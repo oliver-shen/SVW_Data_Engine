@@ -27,8 +27,7 @@ def get_complaint_info(table):
     for tr in tr_list:
         try:
             # 第一行为表头，无td标签
-            id_, brand_, car_model_, type_, desc_, problem_, datetime_, status_ = tr.find_all(
-                'td')
+            id_, brand_, car_model_, type_, desc_, problem_, datetime_, status_ = tr.find_all('td')
             df_tmp = pd.DataFrame([id_.text, brand_.text, car_model_.text, type_.text,
                                    desc_.text, problem_.text, datetime_.text, status_.text]).transpose()
             df = df.append(df_tmp)
@@ -50,4 +49,6 @@ for page in range(1, page_no):
 # 重命名列
 columns = ['投诉编号', '投诉品牌', '投诉车系', '投诉车型', '问题简述', '典型问题', '投诉时间', '投诉状态']
 df_car.columns = columns
+
+# 保存到xls文件
 df_car.to_excel('车质网投诉信息.xls')
