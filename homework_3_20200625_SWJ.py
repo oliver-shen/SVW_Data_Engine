@@ -10,7 +10,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import KMeans
 
-file_name = r'D:\work\MQSS-2\MQSS-2工作文件\2020长期任务\10.SVW Data Engine 数据分析训练营\Data_Engine_with_Python-master\L3\car_data.csv'
+file_name = r'car_data.csv'
 df = pd.read_csv(file_name, encoding='gbk')
 
 
