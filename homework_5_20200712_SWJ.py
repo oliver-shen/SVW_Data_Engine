@@ -14,18 +14,17 @@ import pandas as pd
 start_time = time.time()
 
 # 打开文件并读取数据到txt
-f = open('Market_Basket_Optimisation.csv')
-txt = f.read()
-# 使用购物车图片，作为词云的容器
-mk = imageio.imread('basket.jpg')
-w = wordcloud.WordCloud(width=1600,
-                        height=1200,
-                        background_color='white',
-                        mask=mk,
-                        font_path='msyh.ttc')
-w.generate(txt)
-w.to_file('basket_word_cloud.png')
-f.close()
+with open('Market_Basket_Optimisation.csv', 'r') as f:
+    txt = f.read()
+    # 使用购物车图片，作为词云的容器
+    mk = imageio.imread('basket.jpg')
+    w = wordcloud.WordCloud(width=1600,
+                            height=1200,
+                            background_color='white',
+                            mask=mk,
+                            font_path='msyh.ttc')
+    w.generate(txt)
+    w.to_file('basket_word_cloud.png')
 
 # 取得词频最高的10件商品
 words_freq_sorted = sorted(zip(w.words_.values(), w.words_.keys()))
@@ -34,7 +33,7 @@ df = pd.DataFrame(top_10)
 df.columns = ['Freq','Item']
 
 # 使用seaborn进行bar图展示
-ax = sns.barplot(x=df.iloc[:,0], y=df.iloc[:,1], data=df)
+ax = sns.barplot(x='Freq', y='Item', data=df, palette='GnBu_d')
 ax.set_title('TOP 10 Items', fontsize=18)
 
 end_time = time.time()
