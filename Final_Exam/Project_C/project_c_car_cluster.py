@@ -12,7 +12,7 @@ from sklearn import metrics
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 import matplotlib.pyplot as plt
-import pandas_profiling as pp
+# import pandas_profiling as pp  # 需要安装pandas-profiling:  pip install pandas-profiling
 import time
 
 start = time.time()  # 程序开始时间
