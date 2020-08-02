@@ -62,10 +62,10 @@ silhouette_score = []  # 轮廓系数
 SSE = []  # 簇内误方差
 for i in range(2, 20):
     n_clusters = i
-    clf = KMeans(n_clusters=n_clusters, init='k-means++').fit(X_train)
-    Y_pred = clf.labels_
+    cls = KMeans(n_clusters=n_clusters, init='k-means++').fit(X_train)
+    Y_pred = cls.labels_
     silhouette_score.append(metrics.silhouette_score(X_train, Y_pred))
-    SSE.append(clf.inertia_)
+    SSE.append(cls.inertia_)
 # 画图并寻找合适的K值
 plt.subplot(2, 1, 1)
 plt.plot(range(2, 20), silhouette_score, marker='^')
@@ -75,8 +75,8 @@ plt.plot(range(2, 20), SSE, marker='o')
 plt.ylabel('SSE-簇内误方差')
 # 综合轮廓系数&簇内误方差，设置K=10，并进行聚类
 n_clusters = 10
-clf = KMeans(n_clusters)
-Y_pred = clf.fit_predict(X_train)
+cls = KMeans(n_clusters)
+Y_pred = cls.fit_predict(X_train)
 df['Cluster_ID'] = Y_pred
 df_trimmed = df[['CarName', 'Cluster_ID']]
 
